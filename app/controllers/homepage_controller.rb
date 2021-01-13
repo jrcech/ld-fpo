@@ -8,7 +8,7 @@ class HomepageController < ApplicationController
 
     @query = params[:query]
 
-    @result = sparql.query("
+    @results = sparql.query("
       SELECT DISTINCT ?name ?s
       WHERE {
         ?s a gr:BusinessEntity .

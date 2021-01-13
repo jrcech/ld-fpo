@@ -23,4 +23,9 @@ h1 Vyhledávač fyzických a právnických osob
         data: { disable_with: t('simple_form.submits.search.disable_with') }
         = fa_icon(action_icon(:search))
 
-== ap @result
+== ap @results
+- @results.each_solution do |result|
+  = p result.name
+  br
+  = p result.s
+  br

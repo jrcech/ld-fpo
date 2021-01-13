@@ -54,3 +54,23 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Custom
+gem 'sparql-client', '~> 3.1', '>= 3.1.1'
+gem 'slim-rails', '~> 3.2'
+gem 'simple_form', '~> 5.0', '>= 5.0.3'
+gem 'pagy', '~> 3.10'
+gem 'gretel', '~> 4.2'
+
+group :development do
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-awesome_print'
+  gem 'pry-rails'
+end
+
+group :development, :test do
+  gem 'amazing_print'
+  gem 'pry-byebug'
+end

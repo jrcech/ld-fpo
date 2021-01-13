@@ -1,0 +1,26 @@
+/ frozen_string_literal: true
+
+h1 Vyhledávač fyzických a právnických osob
+
+= simple_form_for '',
+  url: 'search_path',
+  method: :get,
+  html: { id: 'search-opendata' } do |f|
+
+  div class="input-group"
+
+    = f.input_field :query,
+      placeholder: :translate,
+      type: :search,
+      value: @query,
+      label: false,
+      class: 'form-control'
+
+    div class="input-group-append"
+
+      = button_tag type: :submit,
+        class: 'btn btn-primary',
+        data: { disable_with: t('simple_form.submits.search.disable_with') }
+        = fa_icon(action_icon(:search))
+
+== ap @result

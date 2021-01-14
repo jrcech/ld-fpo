@@ -1,24 +1,21 @@
 # frozen_string_literal: true
 
-class HomepageController < ApplicationController
+class SubjectController < ApplicationController
   def index; end
 
-  def search
+  def show
     sparql = SPARQL::Client.new('https://linked.opendata.cz/sparql')
 
-    @query = params[:query]
+    @subject = params[:id]
 
     @results = sparql.query("
-      SELECT DISTINCT ?name ?s ?id
+      SELECT DISTINCT ?s ?name
       WHERE {
         ?s a gr:BusinessEntity .
+        ?s adms:identifier [skos:notation '#{@subject}'] .
         ?s gr:legalName ?name .
-        ?name bif:contains \"'#{@query}*'\" .
-        ?s adms:identifier [skos:notation ?id] .
       }
       LIMIT 100
     ")
-
-    render :index
   end
 end

@@ -1,5 +1,11 @@
-== ap @results
-/ = p @results.name
-br
-/ = p @results.id
-br
+- @results&.each_solution do |result|
+  h1 = result.name
+  br
+  = result.id
+  br
+
+h2 Živnosti
+
+- @zivnost&.each_solution do |result|
+  = result.zivnost
+  br

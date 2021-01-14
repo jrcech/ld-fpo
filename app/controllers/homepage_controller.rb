@@ -15,6 +15,7 @@ class HomepageController < ApplicationController
         ?s gr:legalName ?name .
         ?name bif:contains \"'#{@query}*'\" .
         ?s adms:identifier [skos:notation ?id] .
+        FILTER regex(?s, 'business-entity', 'i')
       }
       LIMIT 100
     ")

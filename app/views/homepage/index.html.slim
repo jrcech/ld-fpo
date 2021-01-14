@@ -25,4 +25,6 @@ h1 Vyhledávač fyzických a právnických osob
 
 - @results&.each_solution do |result|
   = link_to result.name, subject_path(result.id)
+  
+  = " – #{result.id}"
   br

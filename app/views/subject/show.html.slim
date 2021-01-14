@@ -18,3 +18,4 @@
     - dates << solution.date.to_s.to_date
 
   = line_chart dates.group_by_month { |u| u }.map { |k, v| [k, v.count] }.to_h
+  

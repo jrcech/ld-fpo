@@ -10,3 +10,11 @@
   - @zivnost.each_solution do |result|
     = result.zivnost
     br
+
+- if @coi.any?
+  h2 Graf počtu kontrol České obchodní inspekce (ČOI)
+  - dates = []
+  - @coi.each_solution do |solution|
+    - dates << solution.date.to_s.to_date
+
+  = line_chart dates.group_by_month { |u| u }.map { |k, v| [k, v.count] }.to_h

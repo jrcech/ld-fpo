@@ -31,5 +31,19 @@ class SubjectController < ApplicationController
       }
       LIMIT 100
     ")
+
+    @coi = sparql.query("
+      PREFIX sch:<http://schema.org/>
+      PREFIX dc:<http://purl.org/dc/terms/>
+
+      SELECT DISTINCT ?s ?notation ?date ?instrument
+      WHERE {
+        ?s a [rdfs:label 'Check action'] .
+        ?s sch:object [adms:identifier [skos:notation '#{@subject}']] .
+        ?s sch:instrument ?instrument .
+        ?s skos:notation ?notation .
+        ?s dc:date ?date .
+      }
+    ")
   end
 end

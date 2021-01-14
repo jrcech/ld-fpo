@@ -14,6 +14,9 @@ gem 'puma', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
+gem 'chartkick'
+gem 'groupdate'
+
 group :development, :test do
   gem 'byebug'
 end

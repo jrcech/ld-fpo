@@ -11,7 +11,6 @@ module OpenDataCz
         ?s adms:identifier [skos:notation ?id] .
         FILTER regex(?s, 'business-entity', 'i')
       }
-      LIMIT 100
     ")
   end
 
@@ -25,7 +24,6 @@ module OpenDataCz
         ?s adms:identifier [skos:notation ?id] .
         FILTER regex(?s, 'business-entity', 'i')
       }
-      LIMIT 100
     ")
   end
 
@@ -39,7 +37,6 @@ module OpenDataCz
         ?s ares:zivnost [dc:title ?zivnost] .
         FILTER regex(?s, 'business-entity', 'i')
       }
-      LIMIT 100
     ")
   end
 

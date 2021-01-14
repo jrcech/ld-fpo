@@ -22,7 +22,7 @@ h1 Vyhledávač fyzických a právnických osob
         class: 'btn btn-primary',
         data: { disable_with: t('simple_form.submits.search.disable_with') }
         = fa_icon(action_icon(:search))
-        
+
 - @results&.each_solution do |result|
   = link_to result.name, subject_path(result.id)
   br

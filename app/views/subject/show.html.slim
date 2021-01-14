@@ -4,8 +4,9 @@
   = result.id
   br
 
-h2 Živnosti
+- if @zivnost.any?
+  h2 Živnosti
 
-- @zivnost&.each_solution do |result|
-  = result.zivnost
-  br
+  - @zivnost.each_solution do |result|
+    = result.zivnost
+    br

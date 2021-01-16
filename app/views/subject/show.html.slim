@@ -16,7 +16,7 @@
   
     strong Základní kapitál:
     '
-    = result.zakladni_kapital.to_s
+    = "#{number_with_delimiter(result.zakladni_kapital.to_i, delimiter: ' ')} Kč"
     
     br
     br

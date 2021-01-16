@@ -20,8 +20,10 @@ h1 class="mt-5" Vyhledávač fyzických a právnických osob
 
       = button_tag type: :submit,
         class: 'btn btn-primary',
-        data: { disable_with: t('simple_form.submits.search.disable_with') }
+        data: { disable_with: 'Hledám...' }
         = fa_icon(action_icon(:search))
+  
+= flash_messages
 
 main class="mt-4"
   - @results&.each_solution do |result|

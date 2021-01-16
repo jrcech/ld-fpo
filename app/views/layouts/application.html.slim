@@ -15,12 +15,10 @@ html lang="en"
     = csp_meta_tag
 
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
-
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
     == render 'application/navigation/navigation'
 
     div class="container"
-      = flash_messages
       == yield

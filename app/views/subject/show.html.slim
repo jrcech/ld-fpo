@@ -24,3 +24,10 @@ h3 Vývoj udělených pokut
 
 h3 Kontroly dle jednotlivých zákonů
 = column_chart coi_instruments_charts_path, thousands: ' '
+
+h4 Odkazy na zákony
+- OpenDataCz.coi_check_instruments(params[:id]).map { |check| check.instrument.to_s }.uniq.each do |instrument|
+  = link_to instrument,
+    "https://aplikace.mvcr.cz/sbirka-zakonu/SearchResult.aspx?q=#{I18n.transliterate(instrument).tr(' ', '').split('.').last}&typeLaw=zakon&what=Cislo_zakona_smlouvy",
+    target: '_blank'
+  br

@@ -4,10 +4,14 @@ class ChartsController < ApplicationController
   def coi
     dates = []
 
-    OpenDataCz.coi(params[:id]).each_solution do |solution|
+    OpenDataCz.coi_check_dates(params[:id]).each_solution do |solution|
       dates << solution.date.to_s.to_date
     end
 
-    render json: dates.group_by_month { |date| date }.map { |key, value| [key, value.count] }
+    render json: dates.group_by_month { |date| date }.map { |key, value| [key, value.size] }
+  end
+
+  def coi_sanctions
+
   end
 end

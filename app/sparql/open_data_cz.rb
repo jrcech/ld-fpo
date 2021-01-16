@@ -42,7 +42,35 @@ module OpenDataCz
     ")
   end
 
-  def self.coi(id)
+  def self.coi_check_dates(id)
+    @sparql.query("
+      PREFIX sch:<http://schema.org/>
+      PREFIX dc:<http://purl.org/dc/terms/>
+
+      SELECT DISTINCT ?date
+      WHERE {
+        ?s a [rdfs:label 'Check action'] .
+        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
+        ?s dc:date ?date .
+      }
+    ")
+  end
+
+  def self.coi_check_sanctions_sum(id)
+    @sparql.query("
+      PREFIX sch:<http://schema.org/>
+      PREFIX dc:<http://purl.org/dc/terms/>
+
+      SELECT SUM(?value) AS ?sanctions
+      WHERE {
+        ?s a [rdfs:label 'Check action'] .
+        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
+        ?s sch:result [sch:result [gr:hasCurrencyValue ?value]] .
+      }
+    ")
+  end
+
+  def self.coi_check_dsanctions(id)
     @sparql.query("
       PREFIX sch:<http://schema.org/>
       PREFIX dc:<http://purl.org/dc/terms/>

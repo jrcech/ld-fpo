@@ -13,6 +13,21 @@ module OpenDataCz
         ?s adms:identifier [skos:notation ?id] .
         FILTER regex(?s, 'business-entity', 'i')
       }
+      LIMIT 100
+    ")
+  end
+
+  def self.search_by_id(query)
+    @sparql.query("
+      SELECT DISTINCT ?s ?name ?id
+      WHERE {
+        ?s a gr:BusinessEntity .
+        ?s adms:identifier [skos:notation '#{query}'] .
+        ?s adms:identifier [skos:notation ?id] .
+        ?s gr:legalName ?name .
+        FILTER regex(?s, 'business-entity', 'i')
+      }
+      LIMIT 100
     ")
   end
 

@@ -70,6 +70,20 @@ module OpenDataCz
     ")
   end
 
+  def self.coi_check_types(id)
+    @sparql.query("
+      PREFIX sch:<http://schema.org/>
+      PREFIX dc:<http://purl.org/dc/terms/>
+
+      SELECT DISTINCT ?s ?type
+      WHERE {
+        ?s a [rdfs:label 'Check action'] .
+        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
+        ?s sch:result [a ?type] .
+      }
+    ")
+  end
+
   def self.coi_sanctions(id)
     @sparql.query("
       PREFIX sch:<http://schema.org/>

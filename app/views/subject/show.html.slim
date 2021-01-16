@@ -31,3 +31,6 @@ h4 Odkazy na zákony
     "https://aplikace.mvcr.cz/sbirka-zakonu/SearchResult.aspx?q=#{I18n.transliterate(instrument).tr(' ', '').split('.').last}&typeLaw=zakon&what=Cislo_zakona_smlouvy",
     target: '_blank'
   br
+
+h3 Typy kontrol
+= pie_chart coi_check_types_charts_path, thousands: ' '

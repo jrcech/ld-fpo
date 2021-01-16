@@ -24,4 +24,8 @@ class ChartsController < ApplicationController
   def coi_instruments
     render json: OpenDataCz.coi_check_instruments(params[:id]).map { |check| check.instrument.to_s }.group_by(&:itself).map { |key, value| [key, value.size]  }
   end
+
+  def coi_check_types
+    render json: OpenDataCz.coi_check_types(params[:id]).map { |solution| solution.type.to_s.split('/').last }.group_by(&:itself).map { |key, value| [key, value.size]  }
+  end
 end

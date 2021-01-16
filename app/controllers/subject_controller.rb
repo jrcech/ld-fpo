@@ -8,6 +8,5 @@ class SubjectController < ApplicationController
 
     @results = OpenDataCz.find(@subject)
     @zivnost = OpenDataCz.list_zivnost(@subject)
-    @coi = OpenDataCz.coi(@subject)
   end
 end

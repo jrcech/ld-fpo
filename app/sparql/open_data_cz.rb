@@ -40,9 +40,12 @@ module OpenDataCz
       SELECT DISTINCT ?name ?date_issued ?zakladni_kapital
       WHERE {
         ?s adms:identifier [skos:notation '#{id}'] ;
-          gr:legalName ?name ;
-          dct:issued ?date_issued ;
+          gr:legalName ?name .
+
+        OPTIONAL {
+          ?s dct:issued ?date_issued ;
           ares:zakladni-kapital [gr:hasCurrencyValue ?zakladni_kapital] .
+        }
 
         FILTER regex(?s, 'business-entity', 'i')
       }

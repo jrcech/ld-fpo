@@ -15,4 +15,7 @@ h2 Graf počtu kontrol České obchodní inspekce (ČOI)
 = line_chart coi_charts_path(params[:id])
 
 h3 Sankcí celkem
-= "#{@sanctions.first.sanctions.to_i} Kč"
+= "#{@sanctions.map { |solution| solution.sanction.to_i }.sum} Kč"
+
+h2 Graf udělených pokut České obchodní inspekce (ČOI)
+= line_chart coi_sanctions_charts_path(params[:id])

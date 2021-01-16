@@ -36,7 +36,7 @@ module OpenDataCz
       PREFIX dct:<http://purl.org/dc/terms/>
       PREFIX schema:<http://schema.org/>
 
-      SELECT DISTINCT ?s ?name ?id ?date_issued ?address
+      SELECT DISTINCT ?s ?name ?id ?date_issued ?zakladni_kapital
       WHERE {
         ?s a gr:BusinessEntity .
         ?s adms:identifier [skos:notation '#{id}'] .
@@ -44,18 +44,39 @@ module OpenDataCz
         ?s adms:identifier [skos:notation ?id] .
         ?s dct:issued ?date_issued .
         ?s schema:address ?address .
-        FILTER (regex(?s, 'business-entity', 'i') && regex(?address, 'ares', 'i'))
+        ?s ares:zakladni-kapital [gr:hasCurrencyValue ?zakladni_kapital] .
+        FILTER regex(?s, 'business-entity', 'i')
+      }
+    ")
+  end
+
+  def self.address(id)
+    @sparql.query("
+      PREFIX dct:<http://purl.org/dc/terms/>
+      PREFIX schema:<http://schema.org/>
+
+      SELECT DISTINCT ?country ?locality ?postal_code ?street
+      WHERE {
+        ?s adms:identifier [skos:notation '#{id}'] .
+        ?s schema:address ?address .
+        ?address schema:addressCountry ?country ;
+          schema:addressLocality ?locality ;
+          schema:postalCode ?postal_code ;
+          schema:streetAddress ?street .
+        FILTER regex(?address, 'ares', 'i')
       }
     ")
   end
 
   def self.list_zivnost(id)
     @sparql.query("
+      PREFIX dct:<http://purl.org/dc/terms/>
+
       SELECT DISTINCT ?zivnost
       WHERE {
         ?s a gr:BusinessEntity .
         ?s adms:identifier [skos:notation '#{id}'] .
-        ?s ares:zivnost [dc:title ?zivnost] .
+        ?s ares:zivnost [dct:title ?zivnost] .
         FILTER regex(?s, 'business-entity', 'i')
       }
     ")

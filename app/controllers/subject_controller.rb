@@ -11,6 +11,10 @@ class SubjectController < ApplicationController
     ap @results.size
 
     @zivnost = OpenDataCz.list_zivnost(@subject)
+    ap @zivnost
+
+    @address = OpenDataCz.address(@subject)
+    ap @address
 
     @sanctions = OpenDataCz.coi_sanctions(@subject)
 

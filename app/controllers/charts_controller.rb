@@ -11,7 +11,5 @@ class ChartsController < ApplicationController
     render json: dates.group_by_month { |date| date }.map { |key, value| [key, value.size] }
   end
 
-  def coi_sanctions
-
-  end
+  def coi_sanctions; end
 end

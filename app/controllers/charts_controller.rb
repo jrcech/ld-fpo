@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChartsController < ApplicationController
   def coi
     dates = []
@@ -6,6 +8,6 @@ class ChartsController < ApplicationController
       dates << solution.date.to_s.to_date
     end
 
-    render json: dates.group_by_month { |u| u }.map { |k, v| [k, v.count] }
+    render json: dates.group_by_month { |date| date }.map { |key, value| [key, value.count] }
   end
 end

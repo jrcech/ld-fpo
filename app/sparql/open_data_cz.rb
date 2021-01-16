@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OpenDataCz
   @sparql = SPARQL::Client.new('https://linked.opendata.cz/sparql')
 

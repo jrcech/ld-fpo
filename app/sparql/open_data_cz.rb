@@ -33,20 +33,24 @@ module OpenDataCz
 
   def self.find(id)
     @sparql.query("
-      SELECT DISTINCT ?s ?name ?id
+      PREFIX dct:<http://purl.org/dc/terms/>
+      PREFIX schema:<http://schema.org/>
+
+      SELECT DISTINCT ?s ?name ?id ?date_issued ?address
       WHERE {
         ?s a gr:BusinessEntity .
         ?s adms:identifier [skos:notation '#{id}'] .
         ?s gr:legalName ?name .
         ?s adms:identifier [skos:notation ?id] .
-        FILTER regex(?s, 'business-entity', 'i')
+        ?s dct:issued ?date_issued .
+        ?s schema:address ?address .
+        FILTER (regex(?s, 'business-entity', 'i') && regex(?address, 'ares', 'i'))
       }
     ")
   end
 
   def self.list_zivnost(id)
     @sparql.query("
-      PREFIX dc:<http://purl.org/dc/terms/>
       SELECT DISTINCT ?zivnost
       WHERE {
         ?s a gr:BusinessEntity .
@@ -59,28 +63,27 @@ module OpenDataCz
 
   def self.coi_check_dates(id)
     @sparql.query("
-      PREFIX sch:<http://schema.org/>
-      PREFIX dc:<http://purl.org/dc/terms/>
+      PREFIX schema:<http://schema.org/>
+      PREFIX dct:<http://purl.org/dc/terms/>
 
       SELECT DISTINCT ?s ?date
       WHERE {
         ?s a [rdfs:label 'Check action'] .
-        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
-        ?s dc:date ?date .
+        ?s schema:object [adms:identifier [skos:notation '#{id}']] .
+        ?s dct:date ?date .
       }
     ")
   end
 
   def self.coi_check_instruments(id)
     @sparql.query("
-      PREFIX sch:<http://schema.org/>
-      PREFIX dc:<http://purl.org/dc/terms/>
+      PREFIX schema:<http://schema.org/>
 
       SELECT DISTINCT ?s ?instrument
       WHERE {
         ?s a [rdfs:label 'Check action'] .
-        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
-        ?s sch:instrument ?instrument .
+        ?s schema:object [adms:identifier [skos:notation '#{id}']] .
+        ?s schema:instrument ?instrument .
       }
     ")
   end
@@ -101,32 +104,33 @@ module OpenDataCz
 
   def self.coi_sanctions(id)
     @sparql.query("
-      PREFIX sch:<http://schema.org/>
-      PREFIX dc:<http://purl.org/dc/terms/>
+      PREFIX schema:<http://schema.org/>
+      PREFIX dct:<http://purl.org/dc/terms/>
+      PREFIX coi:<http://data.coi.cz/ontology/>
 
       SELECT DISTINCT ?s ?date ?sanction
       WHERE {
         ?s a [rdfs:label 'Check action'] .
-        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
-        ?s dc:date ?date .
-        ?s sch:result [sch:result [gr:hasCurrencyValue ?sanction]] .
-        ?s sch:result [a <http://data.coi.cz/ontology/Sanction>] .
+        ?s schema:object [adms:identifier [skos:notation '#{id}']] .
+        ?s dct:date ?date .
+        ?s schema:result [schema:result [gr:hasCurrencyValue ?sanction]] .
+        ?s schema:result [a coi:Sanction] .
       }
     ")
   end
 
   def self.template(id)
     @sparql.query("
-      PREFIX sch:<http://schema.org/>
-      PREFIX dc:<http://purl.org/dc/terms/>
+      PREFIX schema:<http://schema.org/>
+      PREFIX dct:<http://purl.org/dc/terms/>
 
       SELECT DISTINCT ?s ?notation ?date ?instrument
       WHERE {
         ?s a [rdfs:label 'Check action'] .
-        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
-        ?s sch:instrument ?instrument .
+        ?s schema:object [adms:identifier [skos:notation '#{id}']] .
+        ?s schema:instrument ?instrument .
         ?s skos:notation ?notation .
-        ?s dc:date ?date .
+        ?s dct:date ?date .
       }
     ")
   end

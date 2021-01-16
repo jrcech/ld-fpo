@@ -1,7 +1,15 @@
 - @results&.each_solution do |result|
-  h1 = result.name
-  br
-  = result.id
+  h1 class="mt-5" = result.name
+  
+  div class="mt-4"
+    strong IČO:
+    '
+    = result.id
+    br
+    strong Datum vzniku:
+    '
+    = result.date_issued.to_s.to_date.strftime("%e. %-m. %Y")
+    
   br
 
 - if @zivnost.any?
@@ -11,7 +19,7 @@
     = result.zivnost
     br
 
-h2 Česká obchodní inspekce (ČOI)
+h2 class="mt-4" Česká obchodní inspekce (ČOI)
 
 h3 Vývoj počtu kontrol
 = line_chart coi_charts_path, thousands: ' '

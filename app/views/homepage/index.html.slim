@@ -1,16 +1,16 @@
 / frozen_string_literal: true
 
-h1 Vyhledávač fyzických a právnických osob
+h1 class="mt-5" Vyhledávač fyzických a právnických osob
 
 = simple_form_for '',
   url: 'search_path',
   method: :get,
-  html: { id: 'search-opendata' } do |f|
+  html: { id: 'search-opendata', class: 'mt-4' } do |f|
 
   div class="input-group"
 
     = f.input_field :query,
-      placeholder: :translate,
+      placeholder: 'Název, Jméno, IČO',
       type: :search,
       value: @query,
       label: false,
@@ -23,7 +23,8 @@ h1 Vyhledávač fyzických a právnických osob
         data: { disable_with: t('simple_form.submits.search.disable_with') }
         = fa_icon(action_icon(:search))
 
-- @results&.each_solution do |result|
-  = link_to result.name, subject_path(result.id)
-  = " – #{result.id}"
-  br
+main class="mt-4"
+  - @results&.each_solution do |result|
+    = link_to result.name, subject_path(result.id)
+    = " – #{result.id}"
+    br

@@ -8,7 +8,6 @@ class ChartsController < ApplicationController
       dates << solution.date.to_s.to_date
     end
 
-    # ap dates.group_by_month { |date| date }.map { |key, value| [key, value.size] }
     render json: dates.group_by_month { |date| date }.map { |key, value| [key, value.size] }
   end
 
@@ -20,5 +19,9 @@ class ChartsController < ApplicationController
     end
 
     render json: dates.group_by_month { |date| date[0] }.map{ |key, value| [key, value.map { |sanction| sanction[1] }.sum] }
+  end
+
+  def coi_instruments
+    render json: OpenDataCz.coi_check_instruments(params[:id]).map { |check| check.instrument.to_s }.group_by(&:itself).map { |key, value| [key, value.size]  }
   end
 end

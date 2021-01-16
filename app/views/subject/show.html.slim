@@ -11,11 +11,16 @@
     = result.zivnost
     br
 
-h2 Graf počtu kontrol České obchodní inspekce (ČOI)
+h2 České obchodní inspekce (ČOI)
+
+h3 Vývoj počtu kontrol
 = line_chart coi_charts_path(params[:id])
 
-h3 Sankcí celkem
+h3 Pokut celkem
 = "#{@sanctions.map { |solution| solution.sanction.to_i }.sum} Kč"
 
-h2 Graf udělených pokut České obchodní inspekce (ČOI)
+h3 Vývoj udělených pokut
 = line_chart coi_sanctions_charts_path(params[:id])
+
+h3 Kontroly dle jednotlivých zákonů
+= column_chart coi_instruments_charts_path

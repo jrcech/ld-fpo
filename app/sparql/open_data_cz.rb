@@ -47,11 +47,25 @@ module OpenDataCz
       PREFIX sch:<http://schema.org/>
       PREFIX dc:<http://purl.org/dc/terms/>
 
-      SELECT DISTINCT ?date
+      SELECT DISTINCT ?s ?date
       WHERE {
         ?s a [rdfs:label 'Check action'] .
         ?s sch:object [adms:identifier [skos:notation '#{id}']] .
         ?s dc:date ?date .
+      }
+    ")
+  end
+
+  def self.coi_check_instruments(id)
+    @sparql.query("
+      PREFIX sch:<http://schema.org/>
+      PREFIX dc:<http://purl.org/dc/terms/>
+
+      SELECT DISTINCT ?s ?instrument
+      WHERE {
+        ?s a [rdfs:label 'Check action'] .
+        ?s sch:object [adms:identifier [skos:notation '#{id}']] .
+        ?s sch:instrument ?instrument .
       }
     ")
   end

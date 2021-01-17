@@ -12,6 +12,7 @@ RUN gem install bundler --version 2.2.5
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 COPY . .
+RUN yarn install
 EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]

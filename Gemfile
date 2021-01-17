@@ -10,10 +10,6 @@ gem 'puma', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
-group :development, :test do
-  gem 'byebug'
-end
-
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
@@ -39,7 +35,6 @@ end
 
 group :development, :test do
   gem 'amazing_print'
-  gem 'pry-byebug'
 end
 
 group :development do

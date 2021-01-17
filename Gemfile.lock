@@ -84,7 +84,6 @@ GEM
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
       thor (>= 0.18, < 2)
-    byebug (11.1.3)
     chartkick (3.4.2)
     childprocess (4.0.0)
     code_analyzer (0.5.2)
@@ -169,9 +168,6 @@ GEM
     pry-awesome_print (9.6.11)
       awesome_print (>= 1.1.0, < 999)
       pry (>= 0.9.0, < 999)
-    pry-byebug (3.9.0)
-      byebug (~> 11.0)
-      pry (~> 0.13.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     psych (3.3.0)
@@ -333,7 +329,6 @@ DEPENDENCIES
   binding_of_caller
   brakeman
   bundler-audit
-  byebug
   chartkick
   fasterer
   flay
@@ -344,7 +339,6 @@ DEPENDENCIES
   overcommit
   pagy (~> 3.10)
   pry-awesome_print
-  pry-byebug
   pry-rails
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

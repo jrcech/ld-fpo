@@ -1,6 +1,6 @@
 FROM ruby:2.7.2
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs ghostscript libgmp3-dev ruby-dev libffi-dev
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs ghostscript libgmp3-dev ruby-dev libffi-dev yarn
 
 WORKDIR /app
 

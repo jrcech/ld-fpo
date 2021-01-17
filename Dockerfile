@@ -5,6 +5,7 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs gh
 WORKDIR /app
 
 RUN gem install ffi
+RUN gem install json
 RUN gem install bundler --version 2.2.5
 COPY Gemfile Gemfile.lock ./
 RUN bundle install

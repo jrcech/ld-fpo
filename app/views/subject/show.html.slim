@@ -1,37 +1,36 @@
-- @results&.each_solution do |result|
-  h1 class="mt-5" = result.name
-  
-  div class="mt-4"
-    strong IČO:
-    '
-    = params[:id]
-    
-    br
-    
-    strong Datum vzniku:
-    '
-    = result.date_issued.to_s.to_date.strftime("%e. %-m. %Y")
+h1 class="mt-5" = @results.first.name
 
-    br
+div class="mt-4"
+  strong IČO:
+  '
+  = params[:id]
   
-    strong Základní kapitál:
-    '
-    = "#{number_with_delimiter(result.zakladni_kapital.to_i, delimiter: ' ')} Kč"
-    
-    br
-    br
-    strong Adresa:
-    br
-    = @address.first.street.to_s
-    br
-    '
-    = @address.first.locality.to_s
-    br
-    = @address.first.postal_code.to_s
-    br
-    = @address.first.country.to_s
-    
   br
+  
+  strong Datum vzniku:
+  '
+  = @results.first.date_issued.to_s.to_date.strftime('%e. %-m. %Y')
+
+  br
+
+  strong Základní kapitál:
+  '
+  = "#{number_with_delimiter(@results.first.zakladni_kapital.to_i, delimiter: ' ')} Kč"
+  
+  br
+  br
+  strong Adresa:
+  br
+  = @address.first.street.to_s
+  br
+  '
+  = @address.first.locality.to_s
+  br
+  = @address.first.postal_code.to_s
+  br
+  = @address.first.country.to_s
+    
+br
 
 - if @zivnost.any?
   h2 Živnosti

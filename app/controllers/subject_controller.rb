@@ -6,7 +6,7 @@ class SubjectController < ApplicationController
   def show
     @subject = params[:id]
 
-    @results = OpenDataCz.find(@subject)
+    @results = OpenDataCz.find(@subject, params[:name])
     ap @results
     ap @results.size
 

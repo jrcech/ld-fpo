@@ -32,7 +32,7 @@ module OpenDataCz
     ")
   end
 
-  def self.find(id)
+  def self.find(id, name)
     @sparql.query("
       PREFIX dct:<http://purl.org/dc/terms/>
       PREFIX schema:<http://schema.org/>
@@ -47,8 +47,9 @@ module OpenDataCz
           ares:zakladni-kapital [gr:hasCurrencyValue ?zakladni_kapital] .
         }
 
-        FILTER regex(?s, 'business-entity', 'i')
+        FILTER (regex(?s, 'business-entity', 'i') && ?name='#{name}')
       }
+      ORDER BY ?date_issued
     ")
   end
 

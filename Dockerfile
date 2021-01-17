@@ -11,7 +11,7 @@ RUN apt-get install yarn -y
 WORKDIR /app
 
 RUN gem install bundler --version 2.2.5
-RUN gem install ffi psych json puma parser
+RUN gem install ffi psych json puma parser bindex debug_inspector
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install

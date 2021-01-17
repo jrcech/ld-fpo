@@ -5,7 +5,7 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs gh
 WORKDIR /app
 
 RUN gem install bundler --version 2.2.5
-RUN gem install ffi psych json puma parser
+RUN gem install ffi psych json puma parser bindex
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install

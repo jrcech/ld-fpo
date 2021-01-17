@@ -7,6 +7,7 @@ WORKDIR /app
 RUN gem install ffi
 RUN gem install psych
 RUN gem install json
+RUN gem install puma
 RUN gem install bundler --version 2.2.5
 COPY Gemfile Gemfile.lock ./
 RUN bundle install

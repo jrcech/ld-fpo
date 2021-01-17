@@ -2,6 +2,8 @@
 
 Aplikace je dostupná veřejně na adrese: http://ld-fpo.jiricech.com, případně: https://floating-island-85089.herokuapp.com/
 
+Kód je rovněž dostupny ná GitHubu: https://github.com/jrcech/ld-fpo
+
 SPARQL dotazy se ncházejí ve složce `app/sparql`.
 
 Zajímavé výsledky:

@@ -1,6 +1,14 @@
 # README
 
 Aplikace je dostupná veřejně na adrese: http://ld-fpo.jiricech.com, případně: https://floating-island-85089.herokuapp.com/
+
+SPARQL dotazy se ncházejí ve složce `app/sparql`.
+
+Zajímavé výsledky:
+- Ahold
+- Lidl
+- Penny Market
+
 ## Návod na spuštění lokální verze
 Pro vytvoření a spuštění lokální verze aplikace je nutné mít nainstalovaný Docker.
 

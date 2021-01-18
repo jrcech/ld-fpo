@@ -49,18 +49,25 @@ br
 
 - if @coi.present?
   h2 class="mt-4" Česká obchodní inspekce (ČOI)
+  p Výsledky kontrol ČOI
   
   h3 Vývoj počtu kontrol
   = line_chart coi_charts_path, thousands: ' ', messages: { empty: 'Žádné kontroly' }
   
-  h3 Pokut celkem
-  = "#{@sanctions.map { |solution| solution.sanction.to_i }.sum} Kč"
+  br
   
   h3 Vývoj udělených pokut
+  = "Pokut celkem: #{number_with_delimiter(@sanctions.map { |solution| solution.sanction.to_i }.sum, delimiter: ' ')} Kč"
+  br
+  br
   = line_chart coi_sanctions_charts_path, suffix: ' Kč', thousands: ' ', messages: { empty: 'Žádné kontroly' }
+  
+  br
   
   h3 Kontroly dle jednotlivých zákonů
   = column_chart coi_instruments_charts_path, thousands: ' ', messages: { empty: 'Žádné kontroly' }
+  
+  br
   
   h4 Odkazy na zákony
   - OpenDataCz.coi_check_instruments(params[:id]).map { |check| check.instrument.to_s }.uniq.each do |instrument|
@@ -68,6 +75,8 @@ br
       "https://aplikace.mvcr.cz/sbirka-zakonu/SearchResult.aspx?q=#{I18n.transliterate(instrument).tr(' ', '').split('.').last}&typeLaw=zakon&what=Cislo_zakona_smlouvy",
       target: '_blank'
     br
+  
+  br
   
   h3 Typy kontrol
   = pie_chart coi_check_types_charts_path, thousands: ' ', messages: { empty: 'Žádné kontroly' }

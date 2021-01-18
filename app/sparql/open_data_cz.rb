@@ -99,6 +99,17 @@ module OpenDataCz
     ")
   end
 
+  def self.coi_checks?(id)
+    @sparql.query("
+      PREFIX schema:<http://schema.org/>
+
+      ASK {
+        ?s a [rdfs:label 'Check action'] ;
+          schema:object [adms:identifier [skos:notation '#{id}']] .
+      }
+    ")
+  end
+
   def self.coi_check_dates(id)
     @sparql.query("
       PREFIX schema:<http://schema.org/>

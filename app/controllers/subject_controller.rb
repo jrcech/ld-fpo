@@ -10,6 +10,7 @@ class SubjectController < ApplicationController
     @address = OpenDataCz.address(@subject).first
     @datova_schranka = OpenDataCz.datova_schranka(@subject).first
     @zivnost = OpenDataCz.list_zivnost(@subject)
+    @coi = OpenDataCz.coi_checks?(@subject)
     @sanctions = OpenDataCz.coi_sanctions(@subject)
   end
 end

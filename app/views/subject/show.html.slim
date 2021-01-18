@@ -5,22 +5,26 @@ div class="mt-4"
   '
   = params[:id]
   
-  br
-  
   - if @item.respond_to? :date_issued
+    br
     strong Datum vzniku:
     '
     = @item.date_issued.to_s.to_date.strftime('%e. %-m. %Y')
-
-  br
   
   - if @item.respond_to? :zakladni_kapital
+    br
     strong Základní kapitál:
     '
     = "#{number_with_delimiter(@item.zakladni_kapital.to_i, delimiter: ' ')} Kč"
   
-  br
+  - if @datova_schranka.present?
+    br
+    strong Datová schránka:
+    '
+    = @datova_schranka.address.to_s
 
+  br
+  
   - if @address.present?
     br
     strong Adresa:

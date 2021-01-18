@@ -8,6 +8,7 @@ class SubjectController < ApplicationController
 
     @item = OpenDataCz.find(@subject, params[:name]).first
     @address = OpenDataCz.address(@subject).first
+    @datova_schranka = OpenDataCz.datova_schranka(@subject).first
     @zivnost = OpenDataCz.list_zivnost(@subject)
     @sanctions = OpenDataCz.coi_sanctions(@subject)
   end

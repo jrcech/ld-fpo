@@ -44,12 +44,24 @@ module OpenDataCz
 
         OPTIONAL {
           ?s dct:issued ?date_issued ;
-          ares:zakladni-kapital [gr:hasCurrencyValue ?zakladni_kapital] .
+            ares:zakladni-kapital [gr:hasCurrencyValue ?zakladni_kapital] .
         }
 
         FILTER (regex(?s, 'business-entity', 'i') && ?name='#{name}')
       }
       ORDER BY ?date_issued
+    ")
+  end
+
+  def self.datova_schranka(id)
+    @sparql.query("
+      PREFIX ds:<https://linked.opendata.cz/slovník/datové-schránky/>
+
+      SELECT ?s ?address
+      WHERE {
+        ?s adms:identifier [skos:notation '#{id}'] ;
+          ds:datová-schránka [skos:notation ?address] .
+      }
     ")
   end
 

@@ -28,5 +28,7 @@ h1 class="mt-5" Vyhledávač fyzických a právnických osob
 main class="mt-4"
   - @results&.each_solution do |result|
     = link_to result.name, subject_path(id: result.id, name: result.name.to_s)
-    = " – #{result.id}"
+    br
+    = "IČO: #{result.id}"
+    br
     br

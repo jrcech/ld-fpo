@@ -1,4 +1,4 @@
-h1 class="mt-5" = @results.first.name
+h1 class="mt-5" = @item.name
 
 div class="mt-4"
   strong IČO:
@@ -7,28 +7,32 @@ div class="mt-4"
   
   br
   
-  strong Datum vzniku:
-  '
-  = @results.first.date_issued.to_s.to_date.strftime('%e. %-m. %Y')
+  - if @item.respond_to? :date_issued
+    strong Datum vzniku:
+    '
+    = @item.date_issued.to_s.to_date.strftime('%e. %-m. %Y')
 
   br
-
-  strong Základní kapitál:
-  '
-  = "#{number_with_delimiter(@results.first.zakladni_kapital.to_i, delimiter: ' ')} Kč"
+  
+  - if @item.respond_to? :zakladni_kapital
+    strong Základní kapitál:
+    '
+    = "#{number_with_delimiter(@item.zakladni_kapital.to_i, delimiter: ' ')} Kč"
   
   br
-  br
-  strong Adresa:
-  br
-  = @address.first.street.to_s
-  br
-  '
-  = @address.first.locality.to_s
-  br
-  = @address.first.postal_code.to_s
-  br
-  = @address.first.country.to_s
+
+  - if @address.present?
+    br
+    strong Adresa:
+    br
+    = @address.street.to_s
+    br
+    '
+    = @address.locality.to_s
+    br
+    = @address.postal_code.to_s
+    br
+    = @address.country.to_s
     
 br
 
@@ -42,16 +46,16 @@ br
 h2 class="mt-4" Česká obchodní inspekce (ČOI)
 
 h3 Vývoj počtu kontrol
-= line_chart coi_charts_path, thousands: ' '
+= line_chart coi_charts_path, thousands: ' ', messages: { empty: 'Žádné kontroly' }
 
 h3 Pokut celkem
 = "#{@sanctions.map { |solution| solution.sanction.to_i }.sum} Kč"
 
 h3 Vývoj udělených pokut
-= line_chart coi_sanctions_charts_path, suffix: ' Kč', thousands: ' '
+= line_chart coi_sanctions_charts_path, suffix: ' Kč', thousands: ' ', messages: { empty: 'Žádné kontroly' }
 
 h3 Kontroly dle jednotlivých zákonů
-= column_chart coi_instruments_charts_path, thousands: ' '
+= column_chart coi_instruments_charts_path, thousands: ' ', messages: { empty: 'Žádné kontroly' }
 
 h4 Odkazy na zákony
 - OpenDataCz.coi_check_instruments(params[:id]).map { |check| check.instrument.to_s }.uniq.each do |instrument|
@@ -61,4 +65,4 @@ h4 Odkazy na zákony
   br
 
 h3 Typy kontrol
-= pie_chart coi_check_types_charts_path, thousands: ' '
+= pie_chart coi_check_types_charts_path, thousands: ' ', messages: { empty: 'Žádné kontroly' }

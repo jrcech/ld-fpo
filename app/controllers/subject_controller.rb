@@ -6,9 +6,9 @@ class SubjectController < ApplicationController
   def show
     @subject = params[:id]
 
-    @results = OpenDataCz.find(@subject, params[:name])
+    @item = OpenDataCz.find(@subject, params[:name]).first
+    @address = OpenDataCz.address(@subject).first
     @zivnost = OpenDataCz.list_zivnost(@subject)
-    @address = OpenDataCz.address(@subject)
     @sanctions = OpenDataCz.coi_sanctions(@subject)
   end
 end

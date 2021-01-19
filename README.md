@@ -1,6 +1,8 @@
 # README
 
-Aplikace je dostupná veřejně na adrese: http://ld-fpo.jiricech.com, případně: https://floating-island-85089.herokuapp.com/
+Aplikace je dostupná veřejně na adrese: https://ld-fpo.jiricech.com
+
+Případně: https://ld-fpo.herokuapp.com
 
 Kód je rovněž dostupny ná GitHubu: https://github.com/jrcech/ld-fpo
 
@@ -10,6 +12,10 @@ Zajímavé výsledky:
 - Ahold
 - Lidl
 - Penny Market
+- Obecně velké společnosti s bohatou historií
+
+Nezajímavé výsledky:
+- Obecně fyzické osoby, protože nemají příliš dat. Pouze u některých lze získat adresu, datovou schránku, atd...
 
 ## Návod na spuštění lokální verze
 Pro vytvoření a spuštění lokální verze aplikace je nutné mít nainstalovaný Docker.
